@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller Locations</title>
+</head>
+<body>
+  <h1>Seller Locations</h1>
+  <ul id="sellerLocations"></ul>
+
+  <script>
+    async function fetchSellerLocations() {
+      const response = await fetch('/api/seller-locations');
+      const data = await response.json();
+
+      const sellerLocationsList = document.getElementById('sellerLocations');
+      data.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.textContent = item.DISTRICT;
+        sellerLocationsList.appendChild(listItem);
+      });
+    }
+
+    fetchSellerLocations();
+  </script>
+</body>
+</html>
